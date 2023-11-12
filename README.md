@@ -21,7 +21,8 @@
 {Make a list of websites that you found helpful in this project}
 
 - [Getting Started - The Rust Programming Language](https://doc.rust-lang.org/book/ch01-00-getting-started.html)
-- [Web Site Name](http://url.link.goes.here)
+- [Docs.rs](https://docs.rs/)
+- [Let's Get Rusty - YouTube](https://www.youtube.com/@letsgetrusty)
 
 # Future Work
 
