@@ -75,7 +75,7 @@ impl Manager{
         
         // Get entry to delete.
         let delete = get_number_input("Which entry would you like to delete? "
-            .to_string());
+            .to_string()) - 1;
         
         // Delete those values in vectors.
         self.sites[delete as usize].pop();
