@@ -4,6 +4,9 @@ use std::io;
 // Enable comparing variables.
 use std::cmp::Ordering;
 
+// Enable working with CSV's.
+use csv::ReaderBuilder;
+
 // Create a struct for the Password Manager.
 struct Manager {
     master_password: String,
