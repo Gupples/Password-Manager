@@ -52,24 +52,43 @@ impl Manager{
     
     // 3. Edit entry.
     fn edit_entry(&mut self){
+        
         // Display entries.
         self.view_entries();
 
-        // Get entry to edit
+        // Get entry to edit.
         let edit = get_number_input("Which entry would you like to edit? "
             .to_string());
+        
+        // Edit values in vectors.
         self.sites[edit as usize] = get_input("URL: ".to_string());
         self.usernames[edit as usize] = get_input("Username: ".to_string());
         self.passwords[edit as usize] = get_input("Password: ".to_string());
-
+        println!("Entry successfully edited.");
+        
         
     }
-
+    
     // 4. Delete entry.
+    fn delete_entry(&mut self){
+        
+        // Display entries.
+        self.view_entries();
+        
+        // Get entry to delete.
+        let delete = get_number_input("Which entry would you like to delete? "
+            .to_string());
+        
+        // Delete those values in vectors.
+        self.sites[delete as usize].pop();
+        self.usernames[delete as usize].pop();
+        self.passwords[delete as usize].pop();
+        println!("Entry successfully deleted.");
 
+    }
 
     // 5. Change master password.
-    fn set_master_password(&mut self) {
+    fn change_master_password(&mut self) {
         let mut password_check = get_input(
             "Please enter your master password: ".to_string());
         
@@ -133,7 +152,7 @@ fn main() {
             "1. View entries,",
             "2. Add entry,",
             "3. Edit entry,",
-            // "4. Delete entry,",
+            "4. Delete entry,",
             "5. Change Master Password",
             "0. Quit,"].to_vec();
             for item in actions {
@@ -145,6 +164,8 @@ fn main() {
                 1 => password_manager.view_entries(),
                 2 => password_manager.add_entry(),
                 3 => password_manager.edit_entry(),
+                4 => password_manager.delete_entry(),
+                5 => password_manager.change_master_password(),
                 _ => println!("That wasn't an option")
                 
             }
