@@ -24,6 +24,7 @@
 - [Docs.rs](https://docs.rs/)
 - [Let's Get Rusty - YouTube](https://www.youtube.com/@letsgetrusty)
 - [Stack Overflow](https://stackoverflow.com/)
+- [Changing structs in for loops - Reddit](https://www.reddit.com/r/rust/comments/dyl191/changing_structs_in_for_loops/)
 
 # Future Work
 
