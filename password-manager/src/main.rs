@@ -22,10 +22,13 @@ struct Manager {
 
 // Create methods for Manager.
 impl Manager{
-    
-    // 0. Quit
+
     fn quit(&mut self) {
         self.active = false;
+    }
+
+    fn get_master_password(&self) -> &str {
+        &self.master_password.as_str()
     }
 
     // 1. View entries.
@@ -37,7 +40,7 @@ impl Manager{
     }
 
     // 2. Add entry.
-    fn add_entry(mut self) {
+    fn add_entry(&mut self) {
         let site = get_input("URL: ".to_string());
         let username = get_input("Username: ".to_string());
         let password = get_input("Password: ".to_string());
@@ -48,7 +51,19 @@ impl Manager{
     }
     
     // 3. Edit entry.
+    fn edit_entry(&mut self){
+        // Display entries.
+        self.view_entries();
 
+        // Get entry to edit
+        let edit = get_number_input("Which entry would you like to edit? "
+            .to_string());
+        self.sites[edit as usize] = get_input("URL: ".to_string());
+        self.usernames[edit as usize] = get_input("Username: ".to_string());
+        self.passwords[edit as usize] = get_input("Password: ".to_string());
+
+        
+    }
 
     // 4. Delete entry.
 
@@ -108,17 +123,16 @@ fn main() {
         passwords: [].to_vec()
         
     };
-
     if get_input("Master Password: ".to_string())
-     != password_manager.master_password {
+     != password_manager.get_master_password() {
          println!("Incorrect master password. ");
          
     } else {
         while password_manager.active{
-                    let actions : Vec<&str> = [
+            let actions : Vec<&str> = [
             "1. View entries,",
             "2. Add entry,",
-            // "3. Edit entry,",
+            "3. Edit entry,",
             // "4. Delete entry,",
             "5. Change Master Password",
             "0. Quit,"].to_vec();
@@ -130,8 +144,8 @@ fn main() {
                 0 => password_manager.quit(),
                 1 => password_manager.view_entries(),
                 2 => password_manager.add_entry(),
-                5 => password_manager.set_master_password(),
-                _ => panic!()
+                3 => password_manager.edit_entry(),
+                _ => println!("That wasn't an option")
                 
             }
         }
