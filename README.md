@@ -1,24 +1,24 @@
 # Overview
 
-{Important! Do not say in this section that this is college assignment. Talk about what you are trying to accomplish as a software engineer to further your learning.}
+In order to grow as a programmer and diversify my portfolio, I decided to learn how to program in Rust.
 
-{Provide a description of the software that you wrote to demonstrate the Rust language.}
+This program is a simple password manager written in Rust. I have used object-oriented programming to encapsulate the password manager as a single struct to allow easy modification of the database of url's, usernames, and passwords.
 
 {Describe your purpose for writing this software.}
+This program is meant to be a demonstration of what I have learned about programming in Rust and different strategies after not knowing anything about the language beforehand.
 
-{Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running and a walkthrough of the code. Focus should be on sharing what you learned about the language syntax.}
 
 [Software Demo Video](https://youtu.be/HJ_z89E2SqE)
 
 # Development Environment
 
 {Describe the tools that you used to develop the software}
+For this project, I used Visual Studios Code as the text editor.
 
 {Describe the programming language that you used and any libraries.}
+I created this program using the Rust language, and I imported the input/output crate of the standard library (std::io).
 
 # Useful Websites
-
-{Make a list of websites that you found helpful in this project}
 
 - [Getting Started - The Rust Programming Language](https://doc.rust-lang.org/book/ch01-00-getting-started.html)
 - [Docs.rs](https://docs.rs/)
@@ -28,8 +28,6 @@
 
 # Future Work
 
-{Make a list of things that you need to fix, improve, and add in the future.}
-
-- Item 1
-- Item 2
-- Item 3
+- Deleting an entry doesn't delete the password. I would like to fix this.
+- Add more error handling/user entry safety measures. 
+- Enable lasting functionality by incorporating reading from/writing to a CSV.
