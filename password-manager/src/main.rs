@@ -25,17 +25,23 @@ impl Manager{
 
     // 1. View entries.
     fn view_entries(&self) {
-        for n in 0..self.sites.len() {
-            println!("\\t{}\\t{}\\t{}\\t{}", n + 1, self.sites[n],
-             self.usernames[n], self.passwords[n]);
-        }  
+        if self.sites.len() != 0{
+            for n in 0..self.sites.len() {
+
+                print!("{}\tURL: {}\tUsername: {}\tPassword: {}", n + 1,
+                 self.sites[n], self.usernames[n], self.passwords[n]);
+            }
+        } else {
+            print!("There are no entries in your password manager. ");
+            println!("Please add some first.");
+        }
     }
 
     // 2. Add entry.
     fn add_entry(&mut self) {
-        let site = get_input("URL: ".to_string());
-        let username = get_input("Username: ".to_string());
-        let password = get_input("Password: ".to_string());
+        let site = get_input("URL: ".trim().to_string());
+        let username = get_input("Username: ".trim().to_string());
+        let password = get_input("Password: ".trim().to_string());
         self.sites.push(site);
         self.usernames.push(username);
         self.passwords.push(password);
@@ -50,7 +56,7 @@ impl Manager{
 
         // Get entry to edit.
         let edit = get_number_input("Which entry would you like to edit? "
-            .to_string());
+            .to_string()) - 1;
         
         // Edit values in vectors.
         self.sites[edit as usize] = get_input("URL: ".to_string());
@@ -114,15 +120,11 @@ fn get_input(prompt: String) -> String {
 }
 
 fn get_number_input(prompt: String) -> u32 {
-    let is_number: bool = false;
-    let number = 0;
-    while !is_number {
-        let number = get_input(prompt.clone());
-        let _number: u32 = match number.trim().parse(){
-            Ok(num) => num,
-            Err(_) => continue,
-        };
-    }
+    let number = get_input(prompt.clone());
+    let number: u32 = match number.trim().parse(){
+        Ok(num) => num,
+        Err(_) => 0,
+    };
     return number;
 }
 fn main() {
@@ -147,11 +149,12 @@ fn main() {
             "3. Edit entry,",
             "4. Delete entry,",
             "5. Change Master Password",
-            "0. Quit,"].to_vec();
+            "0. Quit\n"].to_vec();
             for item in actions {
                 println!("{item}");
             }
             let action = get_number_input("Choose an action: ".to_string());
+            println!("");
             match action {
                 0 => password_manager.quit(),
                 1 => password_manager.view_entries(),
