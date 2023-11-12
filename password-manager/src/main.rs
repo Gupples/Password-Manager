@@ -1,13 +1,5 @@
-use core::panic;
 // import input/output from the standard library.
 use std::io;
-
-// Enable comparing variables.
-use std::cmp::Ordering;
-use std::ops::Range;
-
-// Enable working with CSV's.
-// use csv::ReaderBuilder;
 
 // Create a struct for the Password Manager.
 struct Manager {
@@ -89,13 +81,13 @@ impl Manager{
 
     // 5. Change master password.
     fn change_master_password(&mut self) {
-        let mut password_check = get_input(
+        let password_check = get_input(
             "Please enter your master password: ".to_string());
         
         if password_check == self.master_password {
-            let mut new_password1 = get_input(
+            let new_password1 = get_input(
                 "Please enter your new master password: ".to_string());
-            let mut new_password2 = get_input(
+            let new_password2 = get_input(
                 "Please enter your new master password again: ".to_string());
             if new_password1 == new_password2{
                 self.master_password = new_password1;
@@ -126,7 +118,7 @@ fn get_number_input(prompt: String) -> u32 {
     let number = 0;
     while !is_number {
         let number = get_input(prompt.clone());
-        let number: u32 = match number.trim().parse(){
+        let _number: u32 = match number.trim().parse(){
             Ok(num) => num,
             Err(_) => continue,
         };
@@ -135,21 +127,22 @@ fn get_number_input(prompt: String) -> u32 {
 }
 fn main() {
     let mut password_manager = Manager{
-        master_password: get_input("Enter a master password: ".to_string()),
+        master_password: get_input("Enter a starting master password: "
+            .to_string()),
         active: true,
         sites: [].to_vec(),
         usernames: [].to_vec(),
         passwords: [].to_vec()
         
     };
-    if get_input("Master Password: ".to_string())
+    if get_input("Enter your master password: ".to_string())
      != password_manager.get_master_password() {
          println!("Incorrect master password. ");
          
     } else {
         while password_manager.active{
             let actions : Vec<&str> = [
-            "1. View entries,",
+            "\n1. View entries,",
             "2. Add entry,",
             "3. Edit entry,",
             "4. Delete entry,",
